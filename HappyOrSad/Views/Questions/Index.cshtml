@@ -1,0 +1,58 @@
+﻿@model IEnumerable<HappyOrSad.Models.Question>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 1;
+
+}
+
+<h2>List of Questions</h2>
+<p class="has-error h3 alert-danger" style="text-align:center">@ViewBag.ErrorRole</p>
+@if (Model != null)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    <ul id="sortable" style="margin-bottom:30%">
+        @foreach (var item in Model)
+        {
+            var id = item.QuestionID;
+
+            <li class="ui-state-default" id="@id">
+                <div class="row">
+                    
+                    @if (count == 1)
+                    {
+                        <div class="col-sm-10" style="padding-left:4%;padding-right:0px; margin-left:-5%">@Html.DisplayFor(modelItem => item.Text)</div>
+                        <div id="tool" class="col-sm-2" style="padding-left:0px;padding-right:0px;text-align:right">
+                            <span style="padding-left:5%; padding-right:5%" class="glyphicon glyphicon-pushpin"></span>&nbsp;<span class="glyphicon glyphicon-pencil" style="padding-left:5%; padding-right:5%" onclick="@("editQuestion('"+id+"')")"></span>&nbsp;<span class="glyphicon glyphicon-trash" style="padding-left:5%; padding-right:5%" onclick="@("deleteQuestion('"+id+"')")"></span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-sm-10" style="padding-left:4%;padding-right:0px; margin-left:-5%">@Html.DisplayFor(modelItem => item.Text)</div>
+                        <div id="tool" class="col-sm-2" style="padding-left:0px;padding-right:0px;text-align:right">
+                            <span class="glyphicon glyphicon-pencil" style="padding-left:5%; padding-right:5%" onclick="@("editQuestion('"+id+"')")"></span><span class="glyphicon glyphicon-trash" style="padding-left:5%; padding-right:5%" onclick="@("deleteQuestion('"+id+"')")"></span>
+                        </div>
+                    }
+
+                </div>
+            </li>
+
+            ++count;
+
+        }
+    </ul>
+    <br />
+ 
+
+}
+
+
+<script>
+    var menu = document.getElementById("questionsMenu");
+    menu.classList.add("menuHover");
+    menu.classList.add("selected");
+</script>

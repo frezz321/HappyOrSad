@@ -1,0 +1,38 @@
+﻿<Properties StartupConfiguration="{7600B8BE-B901-49D9-83D1-CD13CD2F1310}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HappyOrSad/Controllers/QuestionDisplayController.cs">
+    <Files>
+      <File FileName="HappyOrSad/Controllers/AccountController.cs" Line="205" Column="55" />
+      <File FileName="HappyOrSad/Controllers/QuestionDisplayController.cs" Line="24" Column="45" />
+      <File FileName="HappyOrSad/Controllers/QuestionsController.cs" Line="52" Column="36" />
+      <File FileName="HappyOrSad/Controllers/VillagesController.cs" Line="1" Column="1" />
+      <File FileName="HappyOrSad/Models/ManageViewModels.cs" Line="1" Column="1" />
+      <File FileName="HappyOrSad/Models/Question.cs" Line="1" Column="1" />
+      <File FileName="HappyOrSad/Models/TimeInterval.cs" Line="1" Column="1" />
+      <File FileName="HappyOrSad/Models/HappyOrSadContext.cs" Line="1" Column="1" />
+      <File FileName="HappyOrSad/Models/IdentityModels.cs" Line="1" Column="1" />
+      <File FileName="HappyOrSad/Controllers/QuestionResponsesController.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="HappyOrSad" expanded="True">
+            <Node name="HappyOrSad" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Manage" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.HappyOrSad PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

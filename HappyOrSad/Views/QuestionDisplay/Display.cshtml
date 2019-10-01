@@ -1,0 +1,131 @@
+﻿@model HappyOrSad.Models.Question
+
+@{
+    ViewBag.Title = "Question of Day";
+    var timeIntervalType = TempData["TimeIntervalType"];
+    var timeIntervalValue = TempData["TimeIntervalValue"];
+    TempData.Keep();
+
+
+    if (!User.Identity.IsAuthenticated)
+    {
+        Response.Redirect("/Home/Index");
+    }
+}
+
+<br />
+<p style="text-align:center; font-size: 40px; font-style:oblique; font-weight:bold; color: #1B75BC/*1f3e7c*/; /*margin-top:10%;*/ margin-bottom:1.5em">We would love to know..</p>
+
+<div>
+    @{
+        if (Model != null)
+        {
+            <input type="hidden" id="userId" value=@(ViewBag.UserId) />
+                
+                <div class="alert alert-success">
+                    <b style="font-size:30px"> </b><em id="questionText" style="font-size:30px">@Model.Text</em>
+                </div>
+                <br />
+                <input type="hidden" id="questionId" value="@Model.QuestionID" />
+                <div class="row" style="margin-top:5%">
+                    <div class="col-sm-3" style="text-align:center; margin-bottom:5%">
+                        <a id="veryHappy" href="#" data-toggle="modal" data-target="#myModal">
+                            <img id=4 src="~/Images/VeryHappy.png" class="img-circle" alt="Very Happy" style="cursor:pointer" />
+                        </a>
+                    </div>
+                    <div class="col-sm-3" style="text-align:center; margin-bottom:5%">
+                        <a id="happy" href="#" data-toggle="modal" data-target="#myModal">
+                            <img id=3 src="~/Images/Happy.png" class="img-circle" alt="Happy" style="cursor:pointer"/>
+                        </a>
+
+                    </div>
+                    <div class="col-sm-3" style="text-align:center; margin-bottom:5%">
+                        <a id="sad" href="#" data-toggle="modal" data-target="#myModal">
+                            <img id=2 src="~/Images/Sad.png" class="img-circle" alt="Sad" style="cursor:pointer"/>
+                        </a>
+                    </div>
+                    <div class="col-sm-3" style="text-align:center; margin-bottom:5%">
+                        <a id="angry" href="#" data-toggle="modal" data-target="#myModal">
+                            <img id=1 src="~/Images/Angry.png" class="img-circle" alt="Angry" style="cursor:pointer"/>
+                        </a>
+                    </div>
+                </div>
+
+        <!-- Modal -->
+                <div class="modal" id="myModal" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"></button>
+                                <h4>Success <span class="glyphicon glyphicon-ok"></span></h4>
+                            </div>
+                            <div class="modal-body">
+                                <p style="font-size:18px; text-align:center">Thanks for your response!</p>
+                                <div style="text-align:center"><img id="loadingModal" src="http://cdn2.inlinkz.com/load.gif"/></div>
+                            </div>
+                            @*<div class="modal-footer">
+
+                                <p>MetLifeCare</p>
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+        }
+    }
+
+</div>
+<input type="hidden" id="intervalType" value=@timeIntervalType />
+<input type="hidden" id="intervalValue" value=@timeIntervalValue />
+
+<script>
+    var type = document.getElementById('intervalType').value;
+    var value = parseInt(document.getElementById('intervalValue').value);
+
+    var myVar = setInterval(myTimer, 1000);
+
+    var date = new Date();
+    UpdateDateTimeInterval();
+
+    function myTimer() {
+        var today = new Date();
+        console.log('Today: ', today.toString());
+        document.getElementById("dateTime").innerHTML = "Date & Time: " + today.toLocaleDateString() + " - " + today.toLocaleTimeString();
+
+        if (today.getDate() == date.getDate() &&
+            today.getMonth() == date.getMonth() &&
+            today.getYear() == date.getYear() &&
+            today.getHours() == date.getHours() &&
+            today.getMinutes() == date.getMinutes() &&
+            today.getSeconds() == date.getSeconds()) {
+
+            console.log('Message: ', 'Refreshing...');
+            var questionId = document.getElementById('questionId').value;
+            reloadQuestions(questionId);
+            UpdateDateTimeInterval();
+        }
+    }
+
+    function UpdateDateTimeInterval() {
+        if (type.toLowerCase() === 'day') {
+            date.setDate(date.getDate() + value);
+        } else if (type.toLowerCase() === 'hour') {
+            date.setHours(date.getHours() + value);
+        } else if (type.toLowerCase() === 'minute') {
+            date.setMinutes(date.getMinutes() + value);
+        } else {
+            date.setSeconds(date.getSeconds() + value);
+        }
+        console.log('DateTime Refreshing: ', date.toString());
+    }
+
+    function reloadQuestions(questionId) {
+        $.get('/QuestionDisplay/ReloadQuestions/' + questionId, { questionId : questionId}, function (data) {
+            var id = data.id;
+            var text = data.text;
+            document.getElementById('questionText').innerHTML = text;
+            document.getElementById('questionId').value = id;
+        });
+    }
+</script>

@@ -1,0 +1,44 @@
+﻿@model HappyOrSad.Models.Village
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+<p class="has-error h3 alert-danger" style="text-align:center">@ViewBag.ErrorRole</p>
+@if (Model != null)
+{
+    <div>
+        <h4>Village</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.VillageCode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.VillageCode)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.VillageName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.VillageName)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.VillageID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+<script>
+    var menu = document.getElementById("villagesMenu");
+    menu.classList.add("menuHover");
+    menu.classList.add("selected");
+</script>

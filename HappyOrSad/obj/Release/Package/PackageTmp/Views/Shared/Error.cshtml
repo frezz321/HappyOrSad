@@ -1,0 +1,20 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+<input type="hidden" id="errorDisplay" />
+<section>
+    <legend>Error</legend>
+    <div>
+        <p class="h4" style="text-align:center">
+            @ViewBag.Error
+        </p>
+    </div>
+</section>
+
+
+<script>
+    var login = document.getElementById("loginPartial").style.visibility = "hidden";
+</script>

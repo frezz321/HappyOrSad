@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    var userId = ViewBag.UserId;
+    var code = ViewBag.Code;
+    var param = "userId=" + userId+"&Code="+code;
+
+    //var uri = "https://mlcvillagefeedback-dev.azurewebsites.net/Account/ConfirmEmail?" + param;
+    var uri = "https://localhost:44361/Account/ConfirmEmail?" + param;
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+To activate the user account, click on the <a href=@uri>activate link here.</a>
+<br />
+<address>
+    Metlifecare<br />
+    lvl 4, 20 Kent Street, Newmarket, Auckland 1023<br />
+    <abbr title="Phone">P:</abbr>
+    095398040 (Helpdesk)
+</address>
+
+<address>
+    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@metlifecare.co.nz</a><br />
+    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@metlifecare.co.nz</a>
+</address>

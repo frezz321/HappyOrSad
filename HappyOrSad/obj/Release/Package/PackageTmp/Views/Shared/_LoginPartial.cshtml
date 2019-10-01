@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNet.Identity
+@using Resources
+@{ 
+    var provider = User.Identity.AuthenticationType;
+    var userName = (System.Security.Claims.ClaimsPrincipal.Current.FindFirst("name") != null)? System.Security.Claims.ClaimsPrincipal.Current.FindFirst("name").Value : User.Identity.Name;
+    
+}
+
+@if (Request.IsAuthenticated)
+{
+    
+    <text>
+        <ul id="loginPartial" class="nav navbar-nav navbar-right">
+        
+            <li id="userName"><a href="#"><span class="label label-success"> Hello, @(userName)!</span></a></li>
+    
+            <li>
+                @Html.ActionLink("Sign out", "SignOut", "Account")
+            </li>
+        
+        </ul>
+    </text>
+    
+   
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Sign in with Metlifecare", "SignIn", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
+
+

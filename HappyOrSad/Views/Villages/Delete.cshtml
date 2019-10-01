@@ -1,0 +1,53 @@
+﻿@model HappyOrSad.Models.Village
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+<p class="has-error h3 alert-danger" style="text-align:center">@ViewBag.ErrorRole</p>
+
+@if (Model != null)
+{
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Village</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.VillageCode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.VillageCode)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.VillageName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.VillageName)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+
+}
+
+<script>
+    var menu = document.getElementById("villagesMenu");
+    menu.classList.add("menuHover");
+    menu.classList.add("selected");
+</script>

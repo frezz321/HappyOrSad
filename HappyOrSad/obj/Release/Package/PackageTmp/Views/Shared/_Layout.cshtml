@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    
+    <div ><img id="logo" src="~/Images/Met_logo_RGB.jpg"></div>
+    <div class="wrapper">
+        @if (!Request.IsAuthenticated)
+        {
+            <div class="navbar navbar-inverse navbar-fixed-top" style="position:relative">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @Html.ActionLink("Current Question", "Display", "QuestionDisplay", new { area = "" }, new { @class = "navbar-brand" })
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav"></ul>
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            if (System.Security.Claims.ClaimsPrincipal.Current.FindFirst("name") != null)
+            {
+                var provider = User.Identity.AuthenticationType;
+                var userName = (System.Security.Claims.ClaimsPrincipal.Current.FindFirst("name") != null) ? System.Security.Claims.ClaimsPrincipal.Current.FindFirst("name").Value : User.Identity.Name;
+
+                <div class="navbar navbar-inverse navbar-fixed-top" style="position:relative">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            @Html.ActionLink("Current Question", "Display", "QuestionDisplay", new { area = "" }, new { @class = "navbar-brand" })
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+
+                                <li><a href="/Villages/Index"><span id="villagesMenu">Edit Villages</span></a></li>
+
+                                <li><a href="/Questions/Index"><span id="questionsMenu">Edit Questions</span></a></li>
+
+                                <li><a href="/QuestionResponses/Index"><span id="responsesMenu">View Responses</span></a></li>
+
+                                <li><a href="/TimeIntervals/Create"><span id="optionsMenu">Display Options</span></a></li>
+
+                                <li><a id="registerLink" href="/Account/Register"><span id="registerMenu">Register user</span></a></li>
+
+                                
+                            </ul>
+                            @Html.Partial("_LoginPartial")
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+        <div class="container body-content" style="margin-bottom:20%">
+            @RenderBody()
+
+  
+        </div>
+        <footer class="navbar-fixed-bottom">
+            <div class="row">
+                <div class="col-sm-3">
+                    <p style="font-weight:bold; display:inline-block">&copy; @DateTime.Now.Year - Metlifecare </p>
+                </div>
+                <div class="col-sm-5"></div>
+                <div class="col-sm-4">
+                    <p id="dateTime" style="font-weight:bold; display:inline-block"></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+   
+
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jquery_mobile")*@
+    @Scripts.Render("~/bundles/bootstrap")
+    
+    <script>
+        $(function () {
+            $("#sortable").sortable({
+                update: function (event, ui) {
+                    $('#updateList').css('display', 'inline');
+
+
+                }
+            });
+            //$("#sortable").disableSelection();
+        });
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

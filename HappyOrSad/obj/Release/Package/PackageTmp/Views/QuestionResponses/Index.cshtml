@@ -1,0 +1,80 @@
+﻿@model IEnumerable<HappyOrSad.Models.QuestionResponse>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List of Responses</h2>
+<p class="has-error h3 alert-danger" style="text-align:center">@ViewBag.ErrorRole</p>
+@if (Model != null)
+{
+    @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>*@
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Question.Text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Score)
+            </th>
+            <th>
+                User
+            </th>
+            <th>
+                Village Name
+            </th>
+            <th>
+                Date and Time
+            </th>
+            @*<th></th>*@
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Question.Text)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Score)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Village.VillageName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateSubmitted)
+                </td>
+                @*<td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.QuestionResponseID })
+                </td>*@
+            </tr>
+        }
+
+    </table>
+    var pages = ViewBag.Pages;
+    for (int i = 0; i < pages; i++)
+    {
+        var number = i + 1;
+        if (i < pages - 1)
+        {
+            <a href="/QuestionResponses/Index/@number">Page @number |</a>
+        }
+        else
+        {
+            <a href="/QuestionResponses/Index/@number">Page @number</a>
+        }
+    }
+
+}
+
+<script>
+    var menu = document.getElementById("responsesMenu");
+    menu.classList.add("menuHover");
+    menu.classList.add("selected");
+</script>

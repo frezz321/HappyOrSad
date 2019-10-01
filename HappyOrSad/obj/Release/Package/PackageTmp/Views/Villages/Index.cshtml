@@ -1,0 +1,50 @@
+﻿@model IEnumerable<HappyOrSad.Models.Village>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List of Villages</h2>
+<p class="has-error h3 alert-danger" style="text-align:center">@ViewBag.ErrorRole</p>
+@if (Model != null)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VillageCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VillageName)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VillageCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VillageName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.VillageID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.VillageID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.VillageID })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+<script>
+    var menu = document.getElementById("villagesMenu");
+    menu.classList.add("menuHover");
+    menu.classList.add("selected");
+</script>

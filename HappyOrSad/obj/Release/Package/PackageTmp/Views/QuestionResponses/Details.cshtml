@@ -1,0 +1,56 @@
+﻿@model HappyOrSad.Models.QuestionResponse
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>QuestionResponse</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Question.Text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Question.Text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Village.VillageCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Village.VillageCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Score)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Score)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateSubmitted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateSubmitted)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<script>
+    var menu = document.getElementById("responsesMenu");
+    menu.classList.add("menuHover");
+    menu.classList.add("selected");
+</script>

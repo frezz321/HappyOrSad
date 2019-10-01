@@ -1,0 +1,60 @@
+﻿@model HappyOrSad.Models.Question
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+<p class="has-error h3 alert-danger" style="text-align:center">@ViewBag.ErrorRole</p>
+@if (Model != null)
+{
+    <div>
+        <h4>Question</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Text)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Text)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DateDisplay)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateDisplay)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NextQuestionID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NextQuestionID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PreviousQuestionID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PreviousQuestionID)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.QuestionID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+<script>
+    var menu = document.getElementById("questionsMenu");
+    menu.classList.add("menuHover");
+    menu.classList.add("selected");
+</script>
